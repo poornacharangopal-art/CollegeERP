@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Attendance</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #eef2ff
+            );
+
+            padding: 20px;
+        }
+
+        .container {
+
+            width: 600px;
+
+            max-width: 100%;
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .heading {
+
+            text-align: center;
+
+            color: #2563eb;
+
+            font-size: 30px;
+
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+        }
+
+        .details {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+        .detail-box {
+
+            padding: 20px;
+
+            background: #eff6ff;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+        .detail-box p {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .detail-box h3 {
+
+            color: #1e293b;
+
+            font-size: 20px;
+        }
+
+        @media(max-width: 600px) {
+
+            .details {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <div class="card">
+
+            <h1 class="heading">
+                My Attendance
+            </h1>
+
+            <p class="subtitle">
+                Attendance Details
+            </p>
+
+
+            <div class="details">
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Roll Number
+                    </p>
+
+                    <h3>
+                        <%= attendence.rollNumber %>
+                    </h3>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Semester
+                    </p>
+
+                    <h3>
+                        <%= attendence.semester %>
+                    </h3>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Month
+                    </p>
+
+                    <h3>
+                        <%= attendence.month %>
+                    </h3>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Working Days
+                    </p>
+
+                    <h3>
+                        <%= attendence.workingDays %>
+                    </h3>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Holidays
+                    </p>
+
+                    <h3>
+                        <%= attendence.Holidays %>
+                    </h3>
+
+                </div>
+
+
+                <div class="detail-box">
+
+                    <p>
+                        Present Days
+                    </p>
+
+                    <h3>
+                        <%= attendence.PresentDays %>
+                    </h3>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

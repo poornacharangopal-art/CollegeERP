@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Profile</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #eef2ff
+            );
+
+        }
+
+        .profile-card {
+
+            width: 450px;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.15);
+
+        }
+
+        /* Circular profile */
+
+        .profile-circle {
+
+            width: 120px;
+
+            height: 120px;
+
+            margin: 0 auto 25px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            background: linear-gradient(
+                135deg,
+                #2563eb,
+                #7c3aed
+            );
+
+            color: white;
+
+            font-size: 50px;
+
+            font-weight: bold;
+
+            text-transform: uppercase;
+
+            box-shadow:
+                0 8px 20px rgba(37, 99, 235, 0.3);
+
+        }
+
+        .name {
+
+            font-size: 28px;
+
+            color: #1e293b;
+
+            margin-bottom: 10px;
+
+        }
+
+        .email {
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+        }
+
+        .details {
+
+            text-align: left;
+
+        }
+
+        .detail {
+
+            padding: 15px;
+
+            margin-bottom: 12px;
+
+            background: #f8fafc;
+
+            border-radius: 10px;
+
+        }
+
+        .detail span {
+
+            display: block;
+
+            color: #64748b;
+
+            font-size: 13px;
+
+            margin-bottom: 5px;
+
+        }
+
+        .detail strong {
+
+            color: #1e293b;
+
+            font-size: 16px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="profile-card">
+
+
+        <div class="profile-circle">
+
+            <%= student.name.charAt(0) %>
+
+        </div>
+
+
+        <h1 class="name">
+
+            <%= student.name %>
+
+        </h1>
+
+
+        <p class="email">
+
+            <%= student.email %>
+
+        </p>
+
+
+        <div class="details">
+
+
+            <div class="detail">
+
+                <span>
+                    Roll Number
+                </span>
+
+                <strong>
+                    <%= student.rollNumber %>
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Department
+                </span>
+
+                <strong>
+                    <%= student.department %>
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Admission Year
+                </span>
+
+                <strong>
+                    <%= student.Admissionyear %>
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Semester
+                </span>
+
+                <strong>
+                    <%= student.semester %>
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

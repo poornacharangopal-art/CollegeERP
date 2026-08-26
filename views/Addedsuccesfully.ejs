@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Marks Added</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #eef2ff
+            );
+
+        }
+
+        .card {
+
+            width: 450px;
+
+            max-width: 90%;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 18px;
+
+            text-align: center;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.15);
+
+        }
+
+        .success {
+
+            font-size: 60px;
+
+            margin-bottom: 15px;
+
+        }
+
+        h1 {
+
+            color: #16a34a;
+
+            margin-bottom: 12px;
+
+        }
+
+        p {
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+            font-size: 16px;
+
+        }
+
+        .btn {
+
+            display: inline-block;
+
+            padding: 13px 25px;
+
+            background: #2563eb;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+        .btn:hover {
+
+            background: #1d4ed8;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="card">
+
+
+        <div class="success">
+            ✅
+        </div>
+
+
+        <h1>
+            Marks Added Successfully
+        </h1>
+
+
+        <p>
+            The student's marks have been successfully
+            added to the database.
+        </p>
+
+
+        <a
+            href="/displayaddmarks"
+            class="btn"
+        >
+            Add More Marks
+        </a>
+
+
+    </div>
+
+
+</body>
+
+</html>

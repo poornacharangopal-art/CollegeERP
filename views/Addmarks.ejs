@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Marks</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #dbeafe,
+                #eef2ff
+            );
+
+            padding: 40px 20px;
+
+        }
+
+        .container {
+
+            max-width: 700px;
+
+            margin: auto;
+
+        }
+
+        .card {
+
+            background: white;
+
+            padding: 35px;
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.12);
+
+        }
+
+        h1 {
+
+            text-align: center;
+
+            color: #2563eb;
+
+            margin-bottom: 8px;
+
+        }
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #64748b;
+
+            margin-bottom: 30px;
+
+        }
+
+        .form-group {
+
+            margin-bottom: 20px;
+
+        }
+
+        label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #334155;
+
+            font-weight: bold;
+
+        }
+
+        input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 8px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+        input:focus {
+
+            border-color: #2563eb;
+
+        }
+
+        .marks-heading {
+
+            margin-top: 30px;
+
+            margin-bottom: 15px;
+
+            color: #1e293b;
+
+        }
+
+        .subject-row {
+
+            display: grid;
+
+            grid-template-columns: 1fr 150px;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 8px;
+
+            background: #2563eb;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background: #1d4ed8;
+
+        }
+
+        @media(max-width: 600px) {
+
+            .subject-row {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <div class="card">
+
+
+        <h1>
+            Add Student Marks
+        </h1>
+
+        <p class="subtitle">
+            Enter marks for all subjects
+        </p>
+
+
+        <form
+            action="/addmarks"
+            method="POST"
+        >
+
+
+            <!-- Roll Number -->
+
+            <div class="form-group">
+
+                <label>
+                    Roll Number
+                </label>
+
+                <input
+                    type="text"
+                    name="RollNumber"
+                    placeholder="Enter roll number"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Semester -->
+
+            <div class="form-group">
+
+                <label>
+                    Semester
+                </label>
+
+                <select
+                    name="semester"
+                    required
+                    style="
+                        width:100%;
+                        padding:12px;
+                        border:1px solid #cbd5e1;
+                        border-radius:8px;
+                        font-size:15px;
+                        background:white;
+                    "
+                >
+
+                    <option value="">
+                        Select Semester
+                    </option>
+
+                    <option value="1">
+                        Semester 1
+                    </option>
+
+                    <option value="2">
+                        Semester 2
+                    </option>
+
+                    <option value="3">
+                        Semester 3
+                    </option>
+
+                    <option value="4">
+                        Semester 4
+                    </option>
+
+                    <option value="5">
+                        Semester 5
+                    </option>
+
+                    <option value="6">
+                        Semester 6
+                    </option>
+
+                    <option value="7">
+                        Semester 7
+                    </option>
+
+                    <option value="8">
+                        Semester 8
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <h2 class="marks-heading">
+                Subject Marks
+            </h2>
+
+
+            <!-- Subject 1 -->
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    name="Marks[0][subject]"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="Marks[0][marks]"
+                    placeholder="Marks"
+                    min="0"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Subject 2 -->
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    name="Marks[1][subject]"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="Marks[1][marks]"
+                    placeholder="Marks"
+                    min="0"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Subject 3 -->
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    name="Marks[2][subject]"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="Marks[2][marks]"
+                    placeholder="Marks"
+                    min="0"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Subject 4 -->
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    name="Marks[3][subject]"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="Marks[3][marks]"
+                    placeholder="Marks"
+                    min="0"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Subject 5 -->
+
+            <div class="subject-row">
+
+                <input
+                    type="text"
+                    name="Marks[4][subject]"
+                    placeholder="Enter subject name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    name="Marks[4][marks]"
+                    placeholder="Marks"
+                    min="0"
+                    max="100"
+                    required
+                >
+
+            </div>
+
+
+            <button type="submit">
+                Add Marks
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

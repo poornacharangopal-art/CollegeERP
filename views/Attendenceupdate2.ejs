@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Faculty Attendance</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+
+        <h1>Faculty Attendance</h1>
+        <p class="subtitle">Update monthly attendance</p>
+
+        <form action="/updatefacultyAttendence" method="POST">
+
+            <div class="form-group">
+                <label>Employee ID</label>
+                <input type="text" name="EmployeeId" placeholder="Enter employee ID" required>
+            </div>
+
+            <div class="form-group">
+                <label>Month</label>
+                <select name="month" required>
+                    <option value="">Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Working Days</label>
+                <input type="number" name="workingDays" required>
+            </div>
+
+            <div class="form-group">
+                <label>Holidays</label>
+                <input type="number" name="holidays" required>
+            </div>
+
+            <div class="form-group">
+                <label>Present Days</label>
+                <input type="number" name="presentdays" required>
+            </div>
+
+            <button type="submit">Update Attendance</button>
+
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
