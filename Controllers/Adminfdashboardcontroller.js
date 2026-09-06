@@ -8,6 +8,29 @@ const Marks=require("../models/Marks");
 const Notice=require("../models/Notice");
 const Result=require("../models/Result");
 const Courses = require("../models/Courses");
+const multer = require("multer");
+const storage=multer.diskStorage({
+    destination:function(req,res,cb){
+        cb(null,"public/uploads");
+    },
+    filename:function(req,file,cb){
+        cb(null,file.originalname);
+    }
+});
+const upload = multer({
+    storage: storage,
+
+    fileFilter: function(req, file, cb) {
+        if (
+            file.mimetype === "application/pdf" ||
+            file.mimetype === "image/png"
+        ) {
+            cb(null, true);
+        } else {
+            cb(new Error("Only PDF and PNG files are allowed"));
+        }
+    }
+});
 exports.DisplayAddStudent=async(req,res)=>{
     res.render("Addstudent");
 }
@@ -67,7 +90,7 @@ exports.updatestudentAttendence=async(req,res)=>{
         if(!student){
             return res.send('No student found');
         }
-        const semester=student.semester;
+        const semester=req.body.semester;
         const month=req.body.month;
         const workingDays=req.body.workingdays;
         const Holidays=req.body.holidays;
@@ -170,9 +193,9 @@ exports.getfaculty=async(req,res)=>{
 exports.Allfacultydetails=async(req,res)=>{
     const{department}=req.body;
     const faculty=await Faculty.find({
-        depaertment:department
+        department:department
     });
-    res.render("Facultydetails",faculty);
+    res.render("Facultydetails",{faculty});
 }
 exports.displayAddmarks=async(req,res)=>{
     res.render("Addmarks");
@@ -208,5 +231,22 @@ exports.updateSemester=async(req,res)=>{
 }catch(err){
     console.log(err);
 }
+}
+exports.displayAddNotice=async(req,res)=>{
+    res.render("Addnotice");
+}
+exports.addNotice=async(req,res)=>{
+    const{title,description}=req.body;
+    const file=req.file;
+    if(!file){
+        return res.status(400).send("No file uploaded");
+    }
+    const notice=new Notice({
+        title,
+        description,
+        file:file.path
+    });
+    await notice.save();
+    res.render("Addednotice");
 }
 

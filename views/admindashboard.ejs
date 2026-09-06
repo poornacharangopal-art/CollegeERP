@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | NIT Patna</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f5f1;
+            color: #26332f;
+        }
+
+        /* ================= LAYOUT ================= */
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 250px;
+
+            background: #203c33;
+
+            color: white;
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+
+            height: 100vh;
+
+            padding: 25px 16px;
+
+            box-shadow: 5px 0 25px rgba(0, 0, 0, 0.08);
+
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 0 10px 28px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+
+        .brand-logo {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: #d1aa54;
+
+            color: #203c33;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 800;
+        }
+
+        .brand h2 {
+            font-size: 17px;
+        }
+
+        .brand span {
+            display: block;
+
+            font-size: 11px;
+
+            color: #b8c5bf;
+
+            margin-top: 2px;
+        }
+
+        /* Sidebar menu */
+
+        .menu-title {
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            color: #91a59d;
+
+            padding: 28px 12px 12px;
+        }
+
+        .menu a {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            text-decoration: none;
+
+            color: #d8e1dd;
+
+            padding: 12px;
+
+            border-radius: 9px;
+
+            margin-bottom: 5px;
+
+            font-size: 14px;
+
+            transition: 0.25s;
+        }
+
+        .menu a:hover {
+            background: rgba(255,255,255,0.10);
+
+            color: white;
+
+            transform: translateX(3px);
+        }
+
+        .menu-icon {
+            width: 25px;
+
+            text-align: center;
+
+            font-size: 17px;
+        }
+
+        /* Sidebar bottom */
+
+        .sidebar-bottom {
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 16px;
+
+            right: 16px;
+        }
+
+        .home-btn {
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            padding: 11px;
+
+            border: 1px solid rgba(255,255,255,0.2);
+
+            color: #d8e1dd;
+
+            border-radius: 9px;
+
+            font-size: 13px;
+        }
+
+        .home-btn:hover {
+            background: white;
+
+            color: #203c33;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            margin-left: 250px;
+
+            width: calc(100% - 250px);
+
+            min-height: 100vh;
+        }
+
+        /* ================= TOPBAR ================= */
+
+        .topbar {
+            height: 75px;
+
+            background: white;
+
+            border-bottom: 1px solid #e5e5df;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 40px;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 50;
+        }
+
+        .page-title h1 {
+            font-size: 22px;
+
+            color: #203c33;
+        }
+
+        .page-title p {
+            color: #89938e;
+
+            font-size: 13px;
+
+            margin-top: 3px;
+        }
+
+        .admin-profile {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+
+            background: #eee8d9;
+
+            color: #285c4d;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: 700;
+        }
+
+        .profile-text strong {
+            display: block;
+
+            font-size: 13px;
+
+            color: #30463e;
+        }
+
+        .profile-text span {
+            font-size: 11px;
+
+            color: #89938e;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            padding: 35px 40px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h2 {
+            font-size: 27px;
+
+            color: #203c33;
+
+            margin-bottom: 6px;
+        }
+
+        .welcome p {
+            color: #77847e;
+
+            font-size: 14px;
+        }
+
+        /* ================= STAT CARDS ================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+            margin-bottom: 38px;
+        }
+
+        .stat-card {
+            background: white;
+
+            border: 1px solid #e7e5dc;
+
+            border-radius: 14px;
+
+            padding: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            box-shadow: 0 5px 20px rgba(32,60,51,0.05);
+        }
+
+        .stat-icon {
+            width: 52px;
+            height: 52px;
+
+            border-radius: 12px;
+
+            background: #f0eadc;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+        }
+
+        .stat-card span {
+            font-size: 12px;
+
+            color: #89938e;
+        }
+
+        .stat-card h3 {
+            margin-top: 4px;
+
+            color: #285c4d;
+
+            font-size: 18px;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .section-heading h2 {
+            color: #203c33;
+
+            font-size: 21px;
+        }
+
+        .section-heading span {
+            font-size: 12px;
+
+            color: #89938e;
+        }
+
+        /* ================= MODULE GRID ================= */
+
+        .module-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+        .module {
+            background: white;
+
+            border: 1px solid #e7e5dc;
+
+            border-radius: 14px;
+
+            padding: 23px;
+
+            transition: 0.3s;
+
+            position: relative;
+        }
+
+        .module:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(32,60,51,0.10);
+
+            border-color: #d7c9a7;
+        }
+
+        .module-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 11px;
+
+            background: #f1ecdf;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 22px;
+
+            margin-bottom: 16px;
+        }
+
+        .module h3 {
+            color: #263f37;
+
+            font-size: 16px;
+
+            margin-bottom: 8px;
+        }
+
+        .module p {
+            color: #7a8580;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            min-height: 42px;
+
+            margin-bottom: 18px;
+        }
+
+        .module-btn {
+            display: inline-block;
+
+            text-decoration: none;
+
+            color: #285c4d;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            padding: 8px 12px;
+
+            border-radius: 7px;
+
+            background: #f2f0e8;
+
+            transition: 0.25s;
+        }
+
+        .module-btn:hover {
+            background: #285c4d;
+
+            color: white;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 25px 40px;
+
+            margin-top: 40px;
+
+            border-top: 1px solid #e5e5df;
+
+            color: #8a948f;
+
+            font-size: 12px;
+
+            background: white;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 1000px) {
+
+            .module-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+                width: 70px;
+
+                padding: 20px 10px;
+            }
+
+            .brand h2,
+            .brand span,
+            .menu-title,
+            .menu a span,
+            .home-btn {
+                display: none;
+            }
+
+            .brand {
+                justify-content: center;
+                padding: 0 0 25px;
+            }
+
+            .menu a {
+                justify-content: center;
+            }
+
+            .main {
+                margin-left: 70px;
+
+                width: calc(100% - 70px);
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-text {
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                NIT
+            </div>
+
+            <div>
+
+                <h2>NIT Patna</h2>
+
+                <span>ERP Administration</span>
+
+            </div>
+
+        </div>
+
+
+        <div class="menu-title">
+            Management
+        </div>
+
+
+        <div class="menu">
+
+            <a href="/displayAddstudent">
+
+                <div class="menu-icon">
+                    👨‍🎓
+                </div>
+
+                <span>Add Student</span>
+
+            </a>
+
+
+            <a href="/displayAddFaculty">
+
+                <div class="menu-icon">
+                    👨‍🏫
+                </div>
+
+                <span>Add Faculty</span>
+
+            </a>
+
+
+            <a href="/displaystudentattendenceupdate">
+
+                <div class="menu-icon">
+                    📅
+                </div>
+
+                <span>Student Attendance</span>
+
+            </a>
+
+
+            <a href="/displayfacultyattendenceupdate">
+
+                <div class="menu-icon">
+                    🕐
+                </div>
+
+                <span>Faculty Attendance</span>
+
+            </a>
+
+
+            <a href="/openAddCorsesinsemester">
+
+                <div class="menu-icon">
+                    📚
+                </div>
+
+                <span>Manage Courses</span>
+
+            </a>
+
+
+            <a href="/getfaculty">
+
+                <div class="menu-icon">
+                    👥
+                </div>
+
+                <span>Faculty Details</span>
+
+            </a>
+
+
+            <a href="/displayaddmarks">
+
+                <div class="menu-icon">
+                    📝
+                </div>
+
+                <span>Add Marks</span>
+
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="/" class="home-btn">
+                ← Back to Home
+            </a>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div class="page-title">
+
+                <h1>Administration Dashboard</h1>
+
+                <p>NIT Patna Academic Management System</p>
+
+            </div>
+
+
+            <div class="admin-profile">
+
+                <div class="profile-icon">
+                    A
+                </div>
+
+                <div class="profile-text">
+
+                    <% if (admin) { %>
+
+                        <strong>
+                            <%= admin.email %>
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    <% } %>
+
+                </div>
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- CONTENT -->
+
+        <div class="content">
+
+
+            <div class="welcome">
+
+                <h2>
+                    Welcome, Administrator 👋
+                </h2>
+
+                <p>
+                    Manage academic and administrative activities
+                    from one centralized dashboard.
+                </p>
+
+            </div>
+
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🎓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Academic System
+                        </span>
+
+                        <h3>
+                            Active
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏛️
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Institute
+                        </span>
+
+                        <h3>
+                            NIT Patna
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            System Status
+                        </span>
+
+                        <h3>
+                            Online
+                        </h3>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- MODULES -->
+
+            <div class="section-heading">
+
+                <h2>
+                    Administration Modules
+                </h2>
+
+                <span>
+                    Select an operation
+                </span>
+
+            </div>
+
+
+
+            <div class="module-grid">
+
+
+                <!-- Student -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        👨‍🎓
+                    </div>
+
+                    <h3>
+                        Student Management
+                    </h3>
+
+                    <p>
+                        Register and manage student academic
+                        information.
+                    </p>
+
+                    <a
+                        href="/displayAddstudent"
+                        class="module-btn"
+                    >
+                        Add Student →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Faculty -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        👨‍🏫
+                    </div>
+
+                    <h3>
+                        Faculty Management
+                    </h3>
+
+                    <p>
+                        Add faculty members and maintain
+                        their department information.
+                    </p>
+
+                    <a
+                        href="/displayAddFaculty"
+                        class="module-btn"
+                    >
+                        Add Faculty →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Student Attendance -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        📅
+                    </div>
+
+                    <h3>
+                        Student Attendance
+                    </h3>
+
+                    <p>
+                        Update monthly attendance records
+                        for students.
+                    </p>
+
+                    <a
+                        href="/displaystudentattendenceupdate"
+                        class="module-btn"
+                    >
+                        Update Attendance →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Faculty Attendance -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        🕐
+                    </div>
+
+                    <h3>
+                        Faculty Attendance
+                    </h3>
+
+                    <p>
+                        Maintain monthly attendance records
+                        for faculty members.
+                    </p>
+
+                    <a
+                        href="/displayfacultyattendenceupdate"
+                        class="module-btn"
+                    >
+                        Update Attendance →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Courses -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        📚
+                    </div>
+
+                    <h3>
+                        Course Management
+                    </h3>
+
+                    <p>
+                        Add courses to specific semesters
+                        and departments.
+                    </p>
+
+                    <a
+                        href="/openAddCorsesinsemester"
+                        class="module-btn"
+                    >
+                        Manage Courses →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Faculty Details -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        👥
+                    </div>
+
+                    <h3>
+                        Faculty Details
+                    </h3>
+
+                    <p>
+                        View faculty information according
+                        to department.
+                    </p>
+
+                    <a
+                        href="/getfaculty"
+                        class="module-btn"
+                    >
+                        View Faculty →
+                    </a>
+
+                </div>
+
+
+
+                <!-- Marks -->
+
+                <div class="module">
+
+                    <div class="module-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Marks Management
+                    </h3>
+
+                    <p>
+                        Upload and manage semester marks
+                        for students.
+                    </p>
+
+                    <a
+                        href="/displayaddmarks"
+                        class="module-btn"
+                    >
+                        Add Marks →
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <footer>
+
+            © 2026 <strong>NIT Patna</strong>
+            | Academic Management System
+
+        </footer>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>

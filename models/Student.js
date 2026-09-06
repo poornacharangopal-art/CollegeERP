@@ -10,7 +10,7 @@ const StudentSchema=new mongoose.Schema({
         required:true
     },
     password:{
-        type:Number,
+        type:String,
         required:true
     },
     rollNumber:{
@@ -18,8 +18,7 @@ const StudentSchema=new mongoose.Schema({
         required:true,
     },
     department:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Department',
+        type:String,
         required:true
     },
      Admissionyear:{

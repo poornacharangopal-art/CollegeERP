@@ -13,12 +13,12 @@ const FacultySchema=new mongoose.Schema({
         type:String,
         require:true
     },
-    deparment:{
+    department:{
         type:String,
         required:true
     },
     designation:{
-        type:string,
+        type:String,
         required:true
     },
     courses:[{

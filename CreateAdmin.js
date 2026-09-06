@@ -6,7 +6,7 @@ async function createAdmin() {
     await connectDB();
 
     const admin = new Admin({
-        email: "admin@college.com",
+        email: "admin2@college.com",
         password: "admin123"
     });
 

@@ -1,75 +1,567 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
-    <link rel="stylesheet" href="/css/admin.css">
+
+    <title>Add Faculty | NIT Patna</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background: #eef3ed;
+            color: #26332f;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 72px;
+            background: #203c33;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            color: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .logo img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            background: white;
+            border-radius: 7px;
+            padding: 3px;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            padding: 9px 17px;
+            border: 1px solid #d2ad59;
+            border-radius: 7px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #d2ad59;
+            color: #203c33;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 20px;
+        }
+
+
+        /* ================= FORM CONTAINER ================= */
+
+        .form-container {
+            width: 100%;
+            max-width: 650px;
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            border: 1px solid #d9dfd6;
+            box-shadow: 0 15px 40px rgba(32, 60, 51, 0.12);
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eee8d9;
+            border: 1px solid #d9c99f;
+            border-radius: 16px;
+
+            font-size: 32px;
+        }
+
+        .form-header h1 {
+            color: #203c33;
+            font-size: 31px;
+            margin-bottom: 8px;
+        }
+
+        .form-header p {
+            color: #727c77;
+            font-size: 15px;
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #203c33;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 13px 15px;
+
+            border: 1px solid #cfd7d0;
+            border-radius: 8px;
+
+            font-size: 15px;
+            outline: none;
+
+            background: #fafbf9;
+            color: #26332f;
+
+            transition: 0.25s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #285c4d;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(40, 92, 77, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #9aa39e;
+        }
+
+
+        /* ================= TWO COLUMN ================= */
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+
+        /* ================= SUBMIT ================= */
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 10px;
+
+            padding: 14px;
+
+            border: none;
+            border-radius: 9px;
+
+            background: #285c4d;
+            color: white;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover {
+            background: #1e493d;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(40, 92, 77, 0.2);
+        }
+
+
+        /* ================= NOTE ================= */
+
+        .note {
+            margin-top: 20px;
+            padding: 13px 15px;
+
+            background: #f5f0df;
+            border-left: 4px solid #d2ad59;
+
+            color: #6b685c;
+            font-size: 13px;
+            line-height: 1.5;
+
+            border-radius: 5px;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #203c33;
+            color: #cbd5cf;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: #e0bd6d;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 650px) {
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .back-btn {
+                font-size: 13px;
+                padding: 7px 11px;
+            }
+
+            .form-container {
+                padding: 28px 22px;
+            }
+
+            .form-header h1 {
+                font-size: 26px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<div class="container">
-    <div class="card">
 
-        <h1>Add Student</h1>
-        <p class="subtitle">Enter student details</p>
+    <!-- ================= NAVBAR ================= -->
 
-        <form action="/addfaculty" method="POST">
+    <nav class="navbar">
 
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Enter student name" required>
+        <div class="logo">
+
+            <img
+                src="https://www.nitp.ac.in/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0wkg4jthc83lp.png&w=256&q=75"
+                alt="NIT Patna Logo"
+            >
+
+            NIT Patna
+
+        </div>
+
+
+        <a href="/admindashboard" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <div class="form-container">
+
+
+            <!-- HEADER -->
+
+            <div class="form-header">
+
+                <div class="form-icon">
+                    👨‍🏫
+                </div>
+
+                <h1>
+                    Add Faculty
+                </h1>
+
+                <p>
+                    Enter faculty details to add a new faculty member
+                </p>
+
             </div>
 
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Enter email" required>
-            </div>
 
-            <div class="form-group">
-                <label>Roll Number</label>
-                <input type="text" name="rollNumber" placeholder="Enter roll number" required>
-            </div>
 
-            <div class="form-group">
-                <label>Department</label>
-                <select name="department" required>
-                    <option value="">Select Department</option>
-                    <option value="CSE">CSE</option>
-                    <option value="ECE">ECE</option>
-                    <option value="EEE">EEE</option>
-                    <option value="ME">ME</option>
-                    <option value="CE">CE</option>
-                </select>
-            </div>
+            <!-- FORM -->
 
-            <div class="form-group">
-                <label>Admission Year</label>
-                <input type="number" name="Admissionyear" placeholder="2025" required>
-            </div>
+            <form
+                action="/addfaculty"
+                method="POST"
+            >
 
-            <div class="form-group">
-                <label>Semester</label>
-                <select name="semester" required>
-                    <option value="">Select Semester</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                </select>
-            </div>
 
-            <button type="submit">Add Student</button>
+                <!-- NAME -->
 
-        </form>
+                <div class="form-group">
 
-    </div>
-</div>
+                    <label for="name">
+                        Faculty Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter faculty name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter faculty email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- EMPLOYEE ID + DEPARTMENT -->
+
+                <div class="row">
+
+
+                    <div class="form-group">
+
+                        <label for="EmployeeId">
+                            Employee ID
+                        </label>
+
+                        <input
+                            type="text"
+                            id="EmployeeId"
+                            name="EmployeeId"
+                            placeholder="Enter employee ID"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="department">
+                            Department
+                        </label>
+
+                        <select
+                            id="department"
+                            name="department"
+                            required
+                        >
+
+                            <option value="">
+                                Select Department
+                            </option>
+
+                            <option value="CSE">
+                                Computer Science & Engineering
+                            </option>
+
+                            <option value="ECE">
+                                Electronics & Communication
+                            </option>
+
+                            <option value="EE">
+                                Electrical Engineering
+                            </option>
+
+                            <option value="ME">
+                                Mechanical Engineering
+                            </option>
+
+                            <option value="CE">
+                                Civil Engineering
+                            </option>
+
+                            <option value="CHE">
+                                Chemical Engineering
+                            </option>
+
+                            <option value="MME">
+                                Metallurgical & Materials Engineering
+                            </option>
+
+                            <option value="Architecture">
+                                Architecture
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DESIGNATION -->
+
+                <div class="form-group">
+
+                    <label for="designation">
+                        Designation
+                    </label>
+
+                    <select
+                        id="designation"
+                        name="designation"
+                        required
+                    >
+
+                        <option value="">
+                            Select Designation
+                        </option>
+
+                        <option value="Professor">
+                            Professor
+                        </option>
+
+                        <option value="Associate Professor">
+                            Associate Professor
+                        </option>
+
+                        <option value="Assistant Professor">
+                            Assistant Professor
+                        </option>
+
+                        <option value="Lecturer">
+                            Lecturer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- COURSES -->
+
+                <div class="form-group">
+
+                    <label for="courses">
+                        Courses
+                    </label>
+
+                    <input
+                        type="text"
+                        id="courses"
+                        name="courses"
+                        placeholder="Example: Data Structures, DBMS"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
+                    Add Faculty
+                </button>
+
+
+
+                <!-- NOTE -->
+
+                <div class="note">
+
+                    Please make sure that the Employee ID,
+                    email address and faculty details are correct
+                    before submitting.
+
+                </div>
+
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        © 2026 <strong>NIT Patna</strong>
+        | Academic Management System
+
+    </footer>
+
 
 </body>
+
 </html>

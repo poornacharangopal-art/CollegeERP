@@ -3,11 +3,11 @@ const Student = require("../models/Student");
 
 exports.attendancePage = async (req, res) => {
 
-    if (!req.session.user) {
-        return res.redirect("/login");
+    if (!req.session.email) {
+        return res.redirect("/studentlogin");
     }
 
-    const email = req.session.user.email;
+    const email = req.session.email;
 
     const student = await Student.findOne({ email });
 
@@ -15,18 +15,18 @@ exports.attendancePage = async (req, res) => {
         return res.status(404).send("Student not found");
     }
 
-    res.render("studentattendance", { student });
+    res.render("attendanceform", { student });
 };
 
 exports.displayAttendance = async (req, res) => {
 
-    if (!req.session.user) {
-        return res.redirect("/login");
+    if (!req.session.email) {
+        return res.redirect("/studentlogin");
     }
 
     const { semester, month } = req.body;
 
-    const email = req.session.user.email;
+    const email = req.session.email;
 
     const student = await Student.findOne({ email });
 

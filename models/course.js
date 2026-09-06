@@ -10,12 +10,12 @@ const CourseSchema=new mongoose.Schema({
         required:true
     },
     semster:{
-        type:string,
+        type:String,
         required:true
     },
     faculty:{
         type:mongoose.Schema.Types.ObjectId,
-        red:'Faculty',
+        ref:'Faculty',
         required:true
     }
 });

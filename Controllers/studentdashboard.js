@@ -2,7 +2,7 @@ const Student =require("../models/Student");
 const Marks=require("../models/Marks");
 const StudentAttendence=("../models/StudentAttendence");
 exports.displayStudentlogin=(req,res)=>{
-    res.render("student.login");
+    res.render("studentlogin");
 }
 exports.studentlogin=async(req,res)=>{
     const{email,password}=req.body;

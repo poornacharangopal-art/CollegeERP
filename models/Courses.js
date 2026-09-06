@@ -15,4 +15,4 @@ const CoursesSchema=mongoose.Schema({
         }
     ]
 });
-module.exports=mongoose.model("Courses",CorsesSchema)
+module.exports=mongoose.model("Courses",CoursesSchema)

@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NIT Patna | Academic Management System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f5f3ed;
+            color: #26332f;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            height: 74px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            background: #203c33;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 24px rgba(32, 60, 51, 0.16);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 23px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            background: white;
+            border-radius: 8px;
+            padding: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: #e5ebe7;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: 0.25s;
+        }
+
+        .nav-links a:hover {
+            color: #e0bd6d;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+            min-height: 330px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 65px 20px 55px;
+            background: #fbfaf7;
+            border-bottom: 1px solid #e6e1d5;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 110px;
+            height: 4px;
+            background: #c9a452;
+            bottom: 0;
+            border-radius: 5px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 17px;
+            margin-bottom: 19px;
+            border-radius: 30px;
+            background: #eee8d9;
+            color: #285c4d;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 49px;
+            line-height: 1.15;
+            margin-bottom: 15px;
+            color: #203c33;
+            font-weight: 750;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #6c7772;
+            max-width: 700px;
+            line-height: 1.7;
+        }
+
+
+        /* ================= SLIDER ================= */
+
+        .slider-wrapper {
+            width: 90%;
+            max-width: 1320px;
+            margin: 42px auto 70px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #1d2926;
+            box-shadow: 0 20px 50px rgba(32, 60, 51, 0.16);
+            position: relative;
+            border: 5px solid white;
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            background: #1d2926;
+        }
+
+        .slider {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide.active {
+            display: flex;
+            animation: fade 0.7s ease;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            display: block;
+        }
+
+        @keyframes fade {
+
+            from {
+                opacity: 0;
+                transform: scale(1.015);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+        }
+
+
+        /* ================= SLIDER BUTTONS ================= */
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 50%;
+            background: rgba(29, 41, 38, 0.78);
+            color: white;
+            font-size: 23px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: 0.3s;
+            backdrop-filter: blur(6px);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .prev:hover,
+        .next:hover {
+            background: #285c4d;
+            transform: translateY(-50%) scale(1.08);
+        }
+
+
+        /* ================= DOTS ================= */
+
+        .dots {
+            position: absolute;
+            bottom: 17px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 9px;
+            z-index: 20;
+            padding: 7px 11px;
+            border-radius: 20px;
+            background: rgba(29, 41, 38, 0.58);
+            backdrop-filter: blur(6px);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid white;
+            background: rgba(255, 255, 255, 0.45);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: #d5b15f;
+            border-color: #d5b15f;
+            transform: scale(1.25);
+        }
+
+
+        /* ================= LOGIN ================= */
+
+        .login-section {
+            padding: 85px 7%;
+            background: #eeeae0;
+            text-align: center;
+            border-top: 1px solid #e0dbcf;
+            border-bottom: 1px solid #e0dbcf;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 10px;
+            color: #203c33;
+        }
+
+        .section-subtitle {
+            color: #737d78;
+            font-size: 16px;
+            margin-bottom: 42px;
+        }
+
+        .login-container {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            flex-wrap: wrap;
+        }
+
+        .login-card {
+            width: 340px;
+            padding: 38px 30px;
+            background: #fff;
+            border: 1px solid #ded9cc;
+            border-radius: 17px;
+            box-shadow: 0 12px 30px rgba(32, 60, 51, 0.08);
+            transition: 0.3s;
+        }
+
+        .login-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(32, 60, 51, 0.13);
+            border-color: #d0bb86;
+        }
+
+        .card-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 20px;
+            border-radius: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 31px;
+            background: #eee8d9;
+            color: #285c4d;
+            border: 1px solid #e0d6bc;
+        }
+
+        .login-card h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #203c33;
+        }
+
+        .login-card p {
+            color: #707b76;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            min-height: 82px;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 9px;
+            background: #285c4d;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background: #1e493d;
+            transform: translateY(-2px);
+            box-shadow: 0 9px 20px rgba(40, 92, 77, 0.2);
+        }
+
+
+        /* ================= ABOUT ================= */
+
+        .about {
+            padding: 90px 12%;
+            background: #fbfaf7;
+            text-align: center;
+        }
+
+        .about-box {
+            max-width: 900px;
+            margin: auto;
+            padding: 45px;
+            border-radius: 18px;
+            background: #f3f0e8;
+            border: 1px solid #e2ddcf;
+        }
+
+        .about h2 {
+            font-size: 34px;
+            margin-bottom: 20px;
+            color: #203c33;
+        }
+
+        .about p {
+            font-size: 17px;
+            line-height: 1.9;
+            color: #68736f;
+        }
+
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #203c33;
+            color: #cbd5cf;
+            text-align: center;
+            padding: 28px;
+        }
+
+        footer strong {
+            color: #e0bd6d;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                padding: 0 20px;
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 19px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                padding: 3px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 13px;
+            }
+
+            .hero {
+                min-height: 270px;
+                padding: 48px 20px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .slider-wrapper {
+                width: 96%;
+                margin-top: 25px;
+            }
+
+            .slider-container {
+                height: 300px;
+            }
+
+            .prev,
+            .next {
+                width: 42px;
+                height: 42px;
+                font-size: 19px;
+            }
+
+            .prev {
+                left: 10px;
+            }
+
+            .next {
+                right: 10px;
+            }
+
+            .section-title {
+                font-size: 29px;
+            }
+
+            .login-section {
+                padding: 60px 20px;
+            }
+
+            .login-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .about {
+                padding: 60px 20px;
+            }
+
+            .about-box {
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <img
+                class="logo-icon"
+                src="https://www.nitp.ac.in/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.0wkg4jthc83lp.png&w=256&q=75"
+                alt="NIT Patna Logo"
+            >
+
+            NIT Patna
+
+        </div>
+
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="#about">
+                About
+            </a>
+
+            <a href="#login">
+                Login
+            </a>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- ================= HERO ================= -->
+
+    <section class="hero">
+
+        <div class="hero-badge">
+            Academic Management System
+        </div>
+
+
+        <h1>
+            Welcome to NIT Patna
+        </h1>
+
+
+        <p>
+            National Institute of Technology Patna
+            <br>
+            A centralized platform for managing
+            academic information.
+        </p>
+
+    </section>
+
+
+
+    <!-- ================= SLIDER ================= -->
+
+    <div class="slider-wrapper">
+
+        <section class="slider-container">
+
+            <div class="slider">
+
+
+                <div class="slide active">
+
+                    <img
+                        src="https://i.postimg.cc/c4tGvYPX/Twitter-header-1.png"
+                        alt="NIT Patna"
+                    >
+
+                </div>
+
+
+                <div class="slide">
+
+                    <img
+                        src="https://i.postimg.cc/xdyTrpJ7/Desktop-4-jpg-(1).jpg"
+                        alt="NIT Patna Campus"
+                    >
+
+                </div>
+
+
+                <div class="slide">
+
+                    <img
+                        src="https://i.postimg.cc/pdVbvKBJ/Website-2-(1).webp"
+                        alt="NIT Patna"
+                    >
+
+                </div>
+
+
+                <div class="slide">
+
+                    <img
+                        src="https://i.postimg.cc/0N1Yfkhc/NIRF.png"
+                        alt="NIRF Ranking"
+                    >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Previous -->
+
+            <button
+                class="prev"
+                onclick="changeSlide(-1)"
+            >
+                &#10094;
+            </button>
+
+
+
+            <!-- Next -->
+
+            <button
+                class="next"
+                onclick="changeSlide(1)"
+            >
+                &#10095;
+            </button>
+
+
+
+            <!-- Dots -->
+
+            <div class="dots">
+
+                <span
+                    class="dot active"
+                    onclick="currentSlide(0)"
+                ></span>
+
+                <span
+                    class="dot"
+                    onclick="currentSlide(1)"
+                ></span>
+
+                <span
+                    class="dot"
+                    onclick="currentSlide(2)"
+                ></span>
+
+                <span
+                    class="dot"
+                    onclick="currentSlide(3)"
+                ></span>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+
+    <!-- ================= LOGIN ================= -->
+
+    <section
+        class="login-section"
+        id="login"
+    >
+
+        <h2 class="section-title">
+            Login Portal
+        </h2>
+
+
+        <p class="section-subtitle">
+            Choose your portal to continue
+        </p>
+
+
+        <div class="login-container">
+
+
+            <!-- STUDENT -->
+
+            <div class="login-card">
+
+                <div class="card-icon">
+                    👨‍🎓
+                </div>
+
+
+                <h3>
+                    Student Login
+                </h3>
+
+
+                <p>
+                    Access your student dashboard,
+                    attendance, marks, results,
+                    courses and other academic information.
+                </p>
+
+
+                <a
+                    href="/studentlogin"
+                    class="login-btn"
+                >
+                    Student Login →
+                </a>
+
+            </div>
+
+
+
+            <!-- ADMIN -->
+
+            <div class="login-card">
+
+                <div class="card-icon">
+                    🛡️
+                </div>
+
+
+                <h3>
+                    Admin Login
+                </h3>
+
+
+                <p>
+                    Manage students, faculty,
+                    attendance, courses, marks
+                    and other institute information.
+                </p>
+
+
+                <a
+                    href="/displayadminlogin"
+                    class="login-btn"
+                >
+                    Admin Login →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= ABOUT ================= -->
+
+    <section
+        class="about"
+        id="about"
+    >
+
+        <div class="about-box">
+
+            <h2>
+                About NIT Patna
+            </h2>
+
+
+            <p>
+
+                National Institute of Technology Patna
+                is one of the premier technical institutes
+                in India.
+
+                <br><br>
+
+                This Academic Management System provides
+                a centralized platform for students and
+                administrators to manage and access
+                academic information including attendance,
+                courses, marks, results and notices.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 <strong>NIT Patna</strong>
+            | Academic Management System
+        </p>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        let slideIndex = 0;
+
+        const slides =
+            document.querySelectorAll(".slide");
+
+        const dots =
+            document.querySelectorAll(".dot");
+
+
+        function showSlide(index) {
+
+            if (index >= slides.length) {
+
+                slideIndex = 0;
+
+            }
+
+            else if (index < 0) {
+
+                slideIndex =
+                    slides.length - 1;
+
+            }
+
+            else {
+
+                slideIndex = index;
+
+            }
+
+
+            slides.forEach(slide => {
+
+                slide.classList.remove("active");
+
+            });
+
+
+            dots.forEach(dot => {
+
+                dot.classList.remove("active");
+
+            });
+
+
+            slides[slideIndex]
+                .classList.add("active");
+
+
+            dots[slideIndex]
+                .classList.add("active");
+
+        }
+
+
+        function changeSlide(direction) {
+
+            showSlide(
+                slideIndex + direction
+            );
+
+        }
+
+
+        function currentSlide(index) {
+
+            showSlide(index);
+
+        }
+
+
+        // Automatic slider
+
+        setInterval(() => {
+
+            changeSlide(1);
+
+        }, 5000);
+
+    </script>
+
+
+</body>
+
+</html>

@@ -25,4 +25,4 @@ const StudentAttendenceSchema=new mongoose.Schema({
         required:true
     }
 });
-module.exports=moongoose.model('StudentAttendence',StudentAttendenceSchema);
+module.exports=mongoose.model('StudentAttendence',StudentAttendenceSchema);
